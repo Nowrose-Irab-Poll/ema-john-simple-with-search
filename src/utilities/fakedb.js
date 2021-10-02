@@ -36,6 +36,26 @@ const removeFromDb = id => {
   }
 }
 
+// const removeSingleItemFromDb = id => {
+//     const exists = getDb();
+//     if (!exists) {
+      
+//     }
+//     else {
+//       const shopping_cart = JSON.parse(exists);
+//       if(--shopping_cart[id]){
+        
+//       } else {
+//         delete shopping_cart[id];
+
+//       }
+//       updateDb(shopping_cart);
+
+//     }
+
+
+// }
+
 const getStoredCart = () => {
   const exists = getDb();
   return exists ? JSON.parse(exists) : {};
@@ -45,4 +65,4 @@ const clearTheCart = () => {
   localStorage.removeItem('shopping_cart');
 }
 
-export { addToDb, removeFromDb as deleteFromDb, clearTheCart, getStoredCart }
+export { addToDb, removeFromDb, clearTheCart, getStoredCart }
