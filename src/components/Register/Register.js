@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import useFirebase from "../../hooks/useFirebase";
+import useAuth from "../../hooks/useAuth";
 import "./Register.css";
 
 const Register = () => {
-  const { user, signInUsingGoogle } = useFirebase();
+  const { user, signInUsingGoogle } = useAuth();
   return (
     <div className="register-form">
       <div>

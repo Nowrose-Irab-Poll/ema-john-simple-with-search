@@ -1,10 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import useFirebase from "../../hooks/useFirebase";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import "./login.css";
+import useAuth from "../../hooks/useAuth";
 
 const Login = () => {
-  const { user, signInUsingGoogle, logOut } = useFirebase();
+  const { user, signInUsingGoogle, logOut } = useAuth();
+  const location = useLocation();
+
+  const history = useHistory();
+
+  // const redirect_uri = location.state?.from.pathname || "/"; //both works for some reason
+  const redirect_uri = location.state?.from || "/";
+
+  console.log(location.state?.from);
+
+  const handleGoogleSingIn = () => {
+    signInUsingGoogle().then((result) => {
+      history.push(redirect_uri);
+    });
+  };
 
   return (
     <div className="login-form">
@@ -23,7 +37,7 @@ const Login = () => {
           <br />
         </form>
         <p>-----Other Sign In Methods----</p>
-        <button onClick={signInUsingGoogle} className="btn-regular">
+        <button onClick={handleGoogleSingIn} className="btn-regular">
           Google Sign in
         </button>
       </div>
